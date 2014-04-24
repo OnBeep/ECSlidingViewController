@@ -34,7 +34,7 @@
 #pragma mark - UIViewControllerAnimatedTransitioning
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
-    return 0.25;
+    return 0.5;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -53,8 +53,7 @@
     }
     
     NSTimeInterval duration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration animations:^{
-        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
         if (self.coordinatorAnimations) self.coordinatorAnimations((id<UIViewControllerTransitionCoordinatorContext>)transitionContext);
         topViewController.view.frame = topViewFinalFrame;
     } completion:^(BOOL finished) {
